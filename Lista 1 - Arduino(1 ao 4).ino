@@ -1,4 +1,4 @@
-// Exercicio 1
+// Exercicio 1 – Faça os leds piscarem a cada 4 seg.
 int led = 13;
 
 void setup()
@@ -16,7 +16,7 @@ void loop()
 }
 
 /*
-// Exercicio 2 
+// Exercicio 2 – Faça os leds ficarem acesos por 2 seg. e apagados por 4 seg.
 int led = 13;
 
 void setup()
@@ -35,7 +35,8 @@ void loop()
 */
 
 /*
-// Exercicio 3
+// Exercicio 3 – Faça os leds ficarem acesos por 2 seg. e apagados por 4 seg. e em seguida acesos por 3
+seg. e apagados por 5 seg.
 int led = 13;
 
 void setup()
@@ -60,7 +61,9 @@ void loop()
 */
 
 /*
-// Exercicio 4 
+// Exercicio 4  – Troque na montagem a ligação do pino 13 para 12. Faça o led da placa piscar ao mesmo
+tempo que o led externo com o tempo 1 seg. 
+
 int led1 = 12;
 int led2 = 13;
 
@@ -80,4 +83,56 @@ void loop()
   	digitalWrite(led2, LOW);
   	delay(1000);
 }
+
+// Exercicio 5 - Faça o led da placa piscar com um tempo de 2 seg. e o led externo piscar com um tempo
+de 3 seg. em sequência.
+
+int ledPlaca = 13;
+int ledExterno = 12;
+
+void setup()
+{
+    pinMode(ledPlaca, OUTPUT);
+    pinMode(ledExterno, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(ledPlaca, HIGH);
+    delay(2000);
+    digitalWrite(ledPlaca, LOW);
+
+    digitalWrite(ledExterno, HIGH);
+    delay(3000);
+    digitalWrite(ledExterno, LOW);
+}
+
+// Exercicio 6 - Faça o led externo ficar aceso por 3 seg. e apagado por 5 seg. e o led da placa aceso por
+2,5 seg. e apagado por 4,5 seg.
+
+int ledPlaca = 13;
+int ledExterno = 12;
+
+void setup()
+{
+    pinMode(ledPlaca, OUTPUT);
+    pinMode(ledExterno, OUTPUT);
+}
+
+void loop()
+{
+    digitalWrite(ledExterno, HIGH);
+    delay(3000);
+    digitalWrite(ledExterno, LOW);
+    
+    digitalWrite(ledPlaca, HIGH);
+    delay(2500);
+    digitalWrite(ledPlaca, LOW);
+    delay(4500);
+}
+
+// Exercicio 7 – Faça o led da placa piscar alternadamente em relação ao led externo com o tempo de 1
+seg.
+
+
 */
