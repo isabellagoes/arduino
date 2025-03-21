@@ -1,17 +1,23 @@
-//Exercício 1 – Acrescente mais um botão e um led a montagem. Modifique o programa para que cada botão acenda um dos led sem acionar o buzzer.
+#define ex
+#include "stdio.h"
+
+/*Exercício 1 – Acrescente mais um botão e um led a montagem. Modifique o programa para que cada botão acenda um dos led sem acionar o buzzer.*/
+#ifdef ex1
+main()
+{
 int buttonPin = 2;
-int ledPin = 13; //led 1
+int ledPin = 13; /*led 1*/
 int buzzerPin = 7;
 
-int buttonPin2 = 6; //botão novo :)
-int ledPin2 = 12;   //led novo :)
+int buttonPin2 = 6; /*botão novo :)*/
+int ledPin2 = 12;   /*led novo :)*/
 
 void setup() {
   pinMode(ledPin, OUTPUT);
   pinMode(buttonPin, INPUT);
   pinMode(buzzerPin, OUTPUT);
 
-  //novos pinos
+  /*novos pinos*/
   pinMode(buttonPin2, INPUT);
   pinMode(ledPin2, OUTPUT);
 
@@ -39,8 +45,12 @@ void loop() {
 
   delay(500);
 }
+}
 
-//Exercício 2 – Modifique o programa para o buzzer apitar quando o led 1 acender.
+/*Exercício 2 – Modifique o programa para o buzzer apitar quando o led 1 acender.*/
+#ifdef ex2
+main()
+{
 int buttonPin = 2;
 int ledPin = 13;
 int buzzerPin = 7;
@@ -58,19 +68,22 @@ void loop() {
 
   Serial.println(buttonState);
 
-  if (buttonState == HIGH) { //botão não pressionado
+  if (buttonState == HIGH) { //botão não pressionado*/
     digitalWrite(ledPin, LOW);
-    noTone(buzzerPin); //desliga o buzzer
-  } else { //pressionado :)
+    noTone(buzzerPin); //desliga o buzzer*/
+  } else { //pressionado :)*/
     digitalWrite(ledPin, HIGH);
     tone(buzzerPin, 1000);
   }
 
-  delay(500);  //estabilidade
+  delay(500);  //estabilidade*/
+}
 }
 
-
-//Exercício 3 – Modifique o programa para o buzzer apitar quando o led 2 acender.
+/*Exercício 3 – Modifique o programa para o buzzer apitar quando o led 2 acender.*/
+#ifdef ex3
+main()
+{
 int buttonPin = 2;
 int ledPin = 12;
 int buzzerPin = 7;
@@ -88,18 +101,22 @@ void loop() {
 
   Serial.println(buttonState);
 
-  if (buttonState == HIGH) { //botão não pressionado
+  if (buttonState == HIGH) { //botão não pressionado*/
     digitalWrite(ledPin, LOW);
-    noTone(buzzerPin); //desliga o buzzer
-  } else { //pressionado :)
+    noTone(buzzerPin); //desliga o buzzer*/
+  } else { //pressionado :)*/
     digitalWrite(ledPin, HIGH);
     tone(buzzerPin, 1000);
   }
 
-  delay(500);  //estabilidade
+  delay(500);  //estabilidade*/
+}
 }
 
-//Exercício 4 – Modifique o programa para o led 1 acender e o buzzer apitar quando o botão 2 é apertado e o led 2 acender e o buzzer apitar quando o botão 1 é apertado.
+/*Exercício 4 – Modifique o programa para o led 1 acender e o buzzer apitar quando o botão 2 é apertado e o led 2 acender e o buzzer apitar quando o botão 1 é apertado.*/
+#ifdef ex4
+main()
+{
 int buttonPin1 = 2;
 int buttonPin2 = 6;
 int ledPin1 = 13;
@@ -131,7 +148,6 @@ void loop() {
     noTone(buzzerPin);
   }
 
-  // Quando o botão 1 for pressionado, acende o LED 2 e o buzzer
   if (buttonState1 == LOW) {
     digitalWrite(ledPin2, HIGH);
     tone(buzzerPin, 1000);
@@ -140,10 +156,13 @@ void loop() {
     digitalWrite(ledPin2, LOW);
     noTone(buzzerPin);     
   }
-
+}
 }
 
-// Exercicio 5 – Escreva 2 funções que faça a leitura do estado de cada um dos botões. (PERGUNTAR)
+/*Exercicio 5 – Escreva 2 funções que faça a leitura do estado de cada um dos botões. (PERGUNTAR)*/
+#ifdef ex5
+main()
+{
 int botao1 = 2;
 int botao2 = 6;
 int EstadoBotao1 = 0;
@@ -179,9 +198,12 @@ void loop()
   
   	delay(5000);
 }
+}
 
-/*
-// Exercicio 6 – Escreva 2 funções que tomam a decisão se acende ou apaga cada um do led.
+/*Exercicio 6 – Escreva 2 funções que tomam a decisão se acende ou apaga cada um do led. (PERGUNTAR)*/
+#ifdef ex6
+main()
+{
 int led1 = 13;
 int led2 = 12;
 int botao1 = 2;
@@ -235,10 +257,12 @@ void loop()
 	DecisaoLed2();
   	delay(500);
 }
-*/
+}
 
-/*
-// Exercicio 7 – Escreva 1 função que tomam a decisão de apitar ou não o buzzer.
+/*Exercicio 7 – Escreva 1 função que tomam a decisão de apitar ou não o buzzer.*/
+#ifdef ex7
+main()
+{
 int buzzer = 7;
 int botao1 = 2;
 int EstadoBotao1 = 0;
@@ -271,10 +295,9 @@ void loop()
 	DecisaoBuzzer();
   	delay(500);
 }
-*/
+}
 
-/*
-// Exercicio 8 – Copie o programa abaixo:
+/*Exercicio 8 – Copie o programa abaixo:
 Execute a música.
 Depois tire a função “delay(5000);” e coloque no programa o botão 1 para iniciar a música.
 #define DO 264
@@ -306,10 +329,11 @@ tone(buzzerPin, nota, duracao);
 delay(duracao);
 }
 delay(5000);
-}
+}*/
 
-exercício:
-
+#ifdef ex8
+main()
+{
 #define DO 264
 #define RE 297
 #define MI 330
@@ -357,4 +381,4 @@ void loop()
    		noTone(buzzerPin); 
    }
 }
-*/
+}
