@@ -210,7 +210,7 @@ void DecisaoLed1()
     else
     {
       digitalWrite(led1, HIGH ); 
-      Serial.println("Led 1 aceso");
+      Serial.println("Led 1 acesso");
     }
 }
 
@@ -225,7 +225,7 @@ void DecisaoLed2()
     else
     {
       digitalWrite(led2, HIGH ); 
-   	  Serial.println("Led 2 aceso");
+   	  Serial.println("Led 2 acesso");
     }
 }
 
