@@ -1,4 +1,5 @@
-// Exercicio 1 
+// Exercicio 1 - Faça os leds de cores iguais piscarem na sequência verde, amarelo e vermelho com tempo de 1 seg. acesso e 1 seg. apagado.
+
 int pino8 = 8; //verde 1
 int pino9 = 9; //amarelo 1
 int pino10 = 10; //vermelho 1
@@ -40,7 +41,8 @@ void loop()
 }
 
 /*
-// Exercicio 2
+// Exercicio 2 - Faça funcionar os 2 grupos de leds como um semáforo como num cruzamento com tempos iguais.
+
 int pino8 = 8;   // verde 1
 int pino9 = 9;   // amarelo 1
 int pino10 = 10; // vermelho 1
@@ -84,7 +86,8 @@ void loop()
 */
 
 /*
-// Exercicio 3
+// Exercicio 3 - Modifique os tempos para que um dos semáforos do cruzamento fique mais tempo com verde aceso do que o outro. Verde 4 seg. e 2 segs.
+
 int pino8 = 8; //verde 1
 int pino9 = 9; //amarelo 1
 int pino10 = 10; //vermelho 1
@@ -127,3 +130,10 @@ void loop()
 }
 */
 
+//Exercício 4 – Acrescente um botão a montagem. Faça funcionar os semáforos para travessia de pedestres. Um será para o carro e o outro para os pedestres.
+
+
+//Exercício 5 – Acrescente um buzzer a montagem e quando o botão for acionado no semáforo de pedestre o buzzer deve apitar por 100ms.
+
+
+//Exercício 6 – Transforme o acionamento do buzzer numa função.
