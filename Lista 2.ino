@@ -118,31 +118,30 @@ void setup() {
 }
 
 void loop() {
-  buttonState1 = digitalRead(buttonPin1);  // Lê o estado do botão 1
-  buttonState2 = digitalRead(buttonPin2);  // Lê o estado do botão 2
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
 
-  // Quando o botão 2 for pressionado, acende o LED 1 e o buzzer
-  if (buttonState2 == LOW) {  // Botão pressionado
-    digitalWrite(ledPin1, HIGH);  // Liga o LED 1
-    tone(buzzerPin, 1000);        // Liga o buzzer
+
+  if (buttonState2 == LOW) {
+    digitalWrite(ledPin1, HIGH);
+    tone(buzzerPin, 1000);
     Serial.println("Botão 2 pressionado - LED 1 aceso e buzzer tocando");
   } else {
-    digitalWrite(ledPin1, LOW);   // Desliga o LED 1
-    noTone(buzzerPin);            // Desliga o buzzer
+    digitalWrite(ledPin1, LOW);
+    noTone(buzzerPin);
   }
 
   // Quando o botão 1 for pressionado, acende o LED 2 e o buzzer
-  if (buttonState1 == LOW) {  // Botão pressionado
-    digitalWrite(ledPin2, HIGH);  // Liga o LED 2
-    tone(buzzerPin, 1000);        // Liga o buzzer
+  if (buttonState1 == LOW) {
+    digitalWrite(ledPin2, HIGH);
+    tone(buzzerPin, 1000);
     Serial.println("Botão 1 pressionado - LED 2 aceso e buzzer tocando");
   } else {
-    digitalWrite(ledPin2, LOW);   // Desliga o LED 2
-    noTone(buzzerPin);            // Desliga o buzzer
+    digitalWrite(ledPin2, LOW);
+    noTone(buzzerPin);     
   }
 
 }
-
 
 // Exercicio 5 – Escreva 2 funções que faça a leitura do estado de cada um dos botões.
 int botao1 = 2;
