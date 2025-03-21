@@ -72,7 +72,7 @@ void loop()
 }
 
 /*Exercicio 4  – Troque na montagem a ligação do pino 13 para 12. Faça o led da placa piscar ao mesmo
-tempo que o led externo com o tempo 1 seg.*/
+tempo que o led externo com o tempo 1 seg. (PERGUNTAR)*/
 #ifdef ex4
 main()
 {
