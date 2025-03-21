@@ -72,7 +72,7 @@ void loop() {
 
 //Exercício 3 – Modifique o programa para o buzzer apitar quando o led 2 acender.
 int buttonPin = 2;
-int ledPin = 13;
+int ledPin = 12;
 int buzzerPin = 7;
 int buttonState = 0;
 
