@@ -143,7 +143,7 @@ void loop() {
 
 }
 
-// Exercicio 5 – Escreva 2 funções que faça a leitura do estado de cada um dos botões.
+// Exercicio 5 – Escreva 2 funções que faça a leitura do estado de cada um dos botões. (PERGUNTAR)
 int botao1 = 2;
 int botao2 = 6;
 int EstadoBotao1 = 0;
