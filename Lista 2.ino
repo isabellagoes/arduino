@@ -1,3 +1,37 @@
+/*Com seu Arduino conectado ao computador e devidamente configurado apaga o conteúdo
+da janela de programa e copie e cole esse é o programa.
+// Variaveis
+int buttonPin = 2; // Numero do pino do botão de pressão
+int ledPin = 13; // Numero do pino do led
+int buzzerPin = 7; // Numero do pino do buzzer
+int buttonState = 0; // Variável para leitura do estado do botão
+// Executa uma vez ao ligar ou reiniciar a placa
+void setup() {
+pinMode(ledPin, OUTPUT); //Inicializa o pino do LED como saída (OUTPUT)
+pinMode(buttonPin, INPUT); // Inicializa o pin do botão como entrada (INPUT)
+pinMode(buzzerPin, OUTPUT); //Inicializa o pin do buzzer como saÍda(OUTPUT)
+Serial.begin(9600); //Inicia porta serial e define a velocidade de transmissão
+}
+// Executa infinitamente quando liga a placa
+void loop() {
+//Lê o estado do botao (HIGH -> +5V -> botão nao press.)(LOW -> 0V botao press)
+buttonState = digitalRead(buttonPin);
+Serial.println(buttonState);
+// Testa se o botão não está pressionado
+// Se sim, o estado do botão e alto (HIGH)
+if (buttonState == HIGH) {
+digitalWrite(ledPin, LOW ); // Desliga o LED
+noTone(buzzerPin); //desliga buzzer
+}
+// Senão (Botao pressionado)
+else {
+digitalWrite(ledPin,HIGH ); // Liga o LED
+tone(buzzerPin, 2000); //liga buzzer
+}
+}
+Agora click no ícone “seta para a direita” para que o programa seja compilado e transferido
+para seu Arduino. */
+
 #define ex
 #include "stdio.h"
 
