@@ -216,7 +216,6 @@ void loop() {
 /* Exercício 5 – Escreva 2 funções que façam a leitura do estado de cada um dos botões. REFAZER */ 
 #ifdef ex5
 
-
 main(){
 int botao1 = 2;
 int led1 = 13;
@@ -254,8 +253,8 @@ void loop() {
         digitalWrite(led2, LOW);
         noTone(buzzer);
     }
+
     
-    delay(500);
 }
 }
 #endif
