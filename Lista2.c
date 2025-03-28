@@ -129,6 +129,8 @@ int led1 = 13;
 int buzzer = 7;
 int botao2 = 6;
 int led2 = 12;
+int EstadoBotao1 = 0;
+int EstadoBotao2 = 0;
 
 void setup() {
     pinMode(led1, OUTPUT);
@@ -160,6 +162,30 @@ void loop() {
         digitalWrite(led2, LOW);
         noTone(buzzer);
     }
+
+    int lerBotao1() 
+{
+  	return digitalRead(botao1); 
+}
+
+int lerBotao2() 
+{
+  	return digitalRead(botao2);  
+}
+
+void loop()
+{
+	EstadoBotao1 = lerBotao1();
+  	EstadoBotao2 = lerBotao2();
+	
+    Serial.print("Estado Botao 1: ");
+ 	Serial.println(EstadoBotao1);
+    
+  	Serial.print("Estado Botao 2: ");
+  	Serial.println(EstadoBotao2);
+  
+  	delay(5000);
+}
     
     delay(500);
 }
@@ -253,35 +279,34 @@ void loop() {
         digitalWrite(led2, LOW);
         noTone(buzzer);
     }
-
-    
 }
+
+    int lerBotao1() 
+{
+  	return digitalRead(botao1); 
+}
+
+int lerBotao2() 
+{
+  	return digitalRead(botao2);  
+}
+
+void loop()
+{
+	EstadoBotao1 = lerBotao1();
+  	EstadoBotao2 = lerBotao2();
+	
+    Serial.print("Estado Botao 1: ");
+ 	Serial.println(EstadoBotao1);
+    
+  	Serial.print("Estado Botao 2: ");
+  	Serial.println(EstadoBotao2);
 }
 #endif
 
 /* Exercício 6 – Escreva 2 funções que tomem a decisão se acende ou apaga cada um dos LEDs. */
 #ifdef ex6
 // Função para tomar a decisão de acender ou apagar LED1
-void decisaoLed1() {
-    estadoBotao1 = digitalRead(botao1);
-    if (estadoBotao1 == HIGH) {
-        digitalWrite(led1, LOW);
-    } else {
-        digitalWrite(led1, HIGH);
-    }
-}
-}
-
-// Função para tomar a decisão de acender ou apagar LED2
-void decisaoLed2() {
-    estadoBotao2 = digitalRead(botao2);
-    if (estadoBotao2 == HIGH) {
-        digitalWrite(led2, LOW);
-    } else {
-        digitalWrite(led2, HIGH);
-    }
-}
-
 main(){
 int botao1 = 2;
 int led1 = 13;
