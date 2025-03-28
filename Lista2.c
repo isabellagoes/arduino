@@ -37,6 +37,7 @@ para seu Arduino. */
 
 /* Exercício 1 – Acrescente mais um botão e um LED à montagem. Modifique o programa para que cada botão acenda um dos LEDs sem acionar o buzzer. */
 #ifdef ex1
+main(){
 int botao1 = 2;
 int led1 = 13;
 int botao2 = 6;
@@ -72,15 +73,12 @@ void loop() {
     
     delay(500);
 }
+main(){
 
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
 
 /* Exercício 2 – Modifique o programa para o buzzer apitar quando o LED 1 acender. */
 #ifdef ex2
+main(){
 int botao1 = 2;
 int led1 = 13;
 int buzzer = 7;
@@ -119,17 +117,13 @@ void loop() {
     delay(500);
 }
 
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
+
 }
 #endif
 
 /* Exercício 3 – Modifique o programa para o buzzer apitar quando o LED 2 acender. */
 #ifdef ex3
+main(){
 int botao1 = 2;
 int led1 = 13;
 int buzzer = 7;
@@ -169,18 +163,14 @@ void loop() {
     
     delay(500);
 }
+}
 
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
 }
 #endif
 
 /* Exercício 4 – Modifique o programa para o LED 1 acender e o buzzer apitar quando o botão 2 é apertado e o LED 2 acender e o buzzer apitar quando o botão 1 é apertado. */
 #ifdef ex4
+main(){
 int botao1 = 2;
 int led1 = 13;
 int buzzer = 7;
@@ -220,18 +210,12 @@ void loop() {
     
     delay(500);
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
 }
 #endif
 
 /* Exercício 5 – Escreva 2 funções que façam a leitura do estado de cada um dos botões. */
 #ifdef ex5
+main(){
 int botao1 = 2;
 int botao2 = 6;
 int estadoBotao1 = 0;
@@ -260,18 +244,12 @@ void loop() {
     
     delay(500);
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
 }
 #endif
 
 /* Exercício 6 – Escreva 2 funções que tomem a decisão se acende ou apaga cada um dos LEDs. */
 #ifdef ex6
+main(){
 int led1 = 13;
 int led2 = 12;
 int botao1 = 2;
@@ -296,6 +274,7 @@ void decisaoLed1() {
         digitalWrite(led1, HIGH);
     }
 }
+}
 
 // Função para tomar a decisão de acender ou apagar LED2
 void decisaoLed2() {
@@ -312,13 +291,7 @@ void loop() {
     decisaoLed2();
     delay(500);
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
+}
 }
 #endif
 
@@ -348,13 +321,6 @@ void loop() {
     decisaoBuzzer();
     delay(500);
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
 }
 #endif
 
