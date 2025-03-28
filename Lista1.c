@@ -36,6 +36,12 @@ void setup()
 void loop()
 {
 	digitalWrite(led, HIGH);
+  	delay(4000);
+
+ 	digitalWrite(led, LOW);
+  	delay(4000);
+	
+	digitalWrite(led, HIGH);
 	delay(2000);
 
 	digitalWrite(led, LOW);
@@ -58,26 +64,38 @@ void setup()
 void loop()
 {
 	digitalWrite(led, HIGH);
-    delay(2000); 
+  	delay(4000);
+
+ 	digitalWrite(led, LOW);
+  	delay(4000);
+	
+	digitalWrite(led, HIGH);
+	delay(2000);
+
+	digitalWrite(led, LOW);
+	delay(4000);
+	
+	digitalWrite(led, HIGH);
+        delay(2000); 
   
   	digitalWrite(led, LOW);
-    delay(4000); 
+        delay(4000); 
   
   	digitalWrite(led, HIGH);
-    delay(3000); 
+        delay(3000); 
   
   	digitalWrite(led, LOW);
-    delay(5000); 
+        delay(5000); 
 }
 }
 
 /*Exercicio 4  – Troque na montagem a ligação do pino 13 para 12. Faça o led da placa piscar ao mesmo
-tempo que o led externo com o tempo 1 seg. (PERGUNTAR)*/
+tempo que o led externo com o tempo 1 seg.*/
 #ifdef ex4
 main()
 {
-int led1 = 12;
-int led2 = 13;
+int ledExterno = 12;
+int ledPlaca = 13;
 
 void setup()
 {
@@ -102,24 +120,24 @@ de 3 seg. em sequência.*/
 #ifdef ex5
 main()
 {
-int ledPlaca = 13;
 int ledExterno = 12;
+int ledPlaca = 13;
 
 void setup()
 {
     pinMode(ledPlaca, OUTPUT);
     pinMode(ledExterno, OUTPUT);
 }
-
-void loop()
+	
+void loop() 
 {
-    digitalWrite(ledPlaca, HIGH);
-    delay(2000);
-    digitalWrite(ledPlaca, LOW);
+  digitalWrite(ledPlaca, HIGH);
+  delay(2000);
+  digitalWrite(ledPlaca, LOW);
 
-    digitalWrite(ledExterno, HIGH);
-    delay(3000);
-    digitalWrite(ledExterno, LOW);
+  digitalWrite(ledExterno, HIGH);
+  delay(3000);
+  digitalWrite(ledExterno, LOW);
 }
 }
 
@@ -128,8 +146,8 @@ void loop()
 #ifdef ex6
 main()
 {
-int ledPlaca = 13;
 int ledExterno = 12;
+int ledPlaca = 13;
 
 void setup()
 {
@@ -137,16 +155,16 @@ void setup()
     pinMode(ledExterno, OUTPUT);
 }
 
-void loop()
+void loop() 
 {
-    digitalWrite(ledExterno, HIGH);
-    delay(3000);
-    digitalWrite(ledExterno, LOW);
-    
-    digitalWrite(ledPlaca, HIGH);
-    delay(2500);
-    digitalWrite(ledPlaca, LOW);
-    delay(4500);
+  digitalWrite(ledExterno, HIGH);
+  delay(3000);
+  digitalWrite(ledExterno, LOW);
+
+  digitalWrite(ledPlaca, HIGH);
+  delay(2500);
+  digitalWrite(ledPlaca, LOW);
+  delay(4500);
 }
 }
 
@@ -154,8 +172,8 @@ void loop()
 #ifdef ex7
 main()
 {
-int led1 = 12;
-int led2 = 13;
+int ledExterno = 12;
+int ledPlaca = 13;
 
 void setup()
 {
@@ -163,18 +181,16 @@ void setup()
 	pinMode(led2, OUTPUT);
 }
 
-void loop()
+void loop() 
 {
-  	digitalWrite(led1, HIGH);
-  	delay(1000);
-  
-  	digitalWrite(led1, LOW);
-   	delay(1000);
-  
-  	digitalWrite(led2, HIGH);
-  	delay(1000);	
-  	
-  	digitalWrite(led2, LOW);
-    delay(1000);		
+  digitalWrite(ledPlaca, HIGH);
+  delay(1000);
+  digitalWrite(ledPlaca, LOW);
+  delay(1000);
+
+  digitalWrite(ledExterno, HIGH);
+  delay(1000);
+  digitalWrite(ledExterno, LOW);
+  delay(1000);
 }
 }
