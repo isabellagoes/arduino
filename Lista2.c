@@ -292,11 +292,11 @@ void loop() {
     delay(500);
 }
 }
-}
 #endif
 
 /* Exercício 7 – Escreva 1 função que tome a decisão de apitar ou não o buzzer. */
 #ifdef ex7
+main(){
 int buzzer = 7;
 int botao1 = 2;
 int estadoBotao1 = 0;
@@ -305,6 +305,7 @@ void setup() {
     pinMode(botao1, INPUT);
     pinMode(buzzer, OUTPUT);
     Serial.begin(9600);
+}
 }
 
 // Função para decidir se o buzzer deve apitar
@@ -321,12 +322,12 @@ void loop() {
     decisaoBuzzer();
     delay(500);
 }
-}
 #endif
 
 /* Exercício 8 – Copie o programa abaixo: Execute a música. Depois tire a função delay(5000) e coloque o botão 1 para iniciar a música. */
 
 #ifdef ex8
+main(){
 #define DO 264
 #define RE 297
 #define MI 330
@@ -366,12 +367,5 @@ void loop() {
         noTone(buzzerPin);
     }
 }
-
-int main() {
-    setup();
-    while (true) {
-        loop();
-    }
-    return 0;
 }
 #endif
