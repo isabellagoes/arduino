@@ -157,7 +157,7 @@ int vermelhoCarro = 10;
 int vermelhoPedestre = 13;
 int amareloPedestre = 12;
 int verdePedestre = 11;
-int botao = 7; // Botão apenas na montagem, sem uso ainda
+int botao = 7; //Botão apenas na montagem, sem uso ainda
 
 void setup() {
    pinMode(verdeCarro, OUTPUT);
@@ -173,7 +173,7 @@ void loop() {
    //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
    digitalWrite(verdeCarro, HIGH);
    digitalWrite(vermelhoPedestre, HIGH);
-   delay(4000); // Carro verde por 4 segundos
+   delay(4000); //Carro verde por 4 segundos
 
    //Grupo 1: Amarelo (Carro); Grupo 2: Vermelho (Pedestre)
    digitalWrite(verdeCarro, LOW);
@@ -226,58 +226,42 @@ void setup() {
    pinMode(buzzer, OUTPUT);
 }
 
+if (digitalRead(botao) == LOW)  {//lógica invertida com INPUT_PULLUP
+     tone(buzzer, 1000); 
+     delay(100);
+     noTone(buzzer);
+}
+      
 void loop() {
-   // Verifica botão antes de cada passo
-   verificarBotao();
-
-   //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
+  //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
    digitalWrite(verdeCarro, HIGH);
    digitalWrite(vermelhoPedestre, HIGH);
-   esperarComVerificacao(4000);
+   delay(4000); // Carro verde por 4 segundos
 
    //Grupo 1: Amarelo (Carro); Grupo 2: Vermelho (Pedestre)
    digitalWrite(verdeCarro, LOW);
    digitalWrite(amareloCarro, HIGH);
-   esperarComVerificacao(1000);
+   delay(1000);
    digitalWrite(amareloCarro, LOW);
 
    //Grupo 1: Vermelho (Carro); Grupo 2: Verde (Pedestre)
    digitalWrite(vermelhoCarro, HIGH);
    digitalWrite(vermelhoPedestre, LOW);
    digitalWrite(verdePedestre, HIGH);
-   esperarComVerificacao(2000);
+   delay(2000); // Pedestre verde por 2 segundos
 
    //Grupo 1: Vermelho (Carro); Grupo 2: Amarelo (Pedestre)
    digitalWrite(verdePedestre, LOW);
    digitalWrite(amareloPedestre, HIGH);
-   esperarComVerificacao(1000);
+   delay(1000);
    digitalWrite(amareloPedestre, LOW);
 
    //vermelhos por um curto tempo de segurança
    digitalWrite(vermelhoPedestre, HIGH);
-   esperarComVerificacao(500);
+   delay(500);
 
    //volta ao ciclo inicial
    digitalWrite(vermelhoCarro, LOW);
-}
-
-//função que verifica se o botão foi pressionado
-void verificarBotao() {
-   if (digitalRead(botao) == LOW) { //lógica invertida com INPUT_PULLUP
-     tone(buzzer, 1000); 
-     delay(100);
-     noTone(buzzer);
-   }
-}
-
-//função para esperar um tempo (mas checando o botão durante esse tempo)
-void esperarComVerificacao(int tempo) {
-  int tempoPassado = 0;
-  while (tempoPassado < tempo) {
-    verificarBotao();
-    delay(50); // checa a cada 50ms
-    tempoPassado += 50;
-  }
 }
 }
 #endif
