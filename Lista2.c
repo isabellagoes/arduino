@@ -32,7 +32,7 @@ tone(buzzerPin, 2000); //liga buzzer
 Agora click no ícone “seta para a direita” para que o programa seja compilado e transferido
 para seu Arduino. */
 
-#define ex1
+#define ex
 #include "stdio.h"
 
 /* Exercício 1 – Acrescente mais um botão e um LED à montagem. Modifique o programa para que cada botão acenda um dos LEDs sem acionar o buzzer. */
