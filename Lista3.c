@@ -155,50 +155,50 @@ int verdeCarro = 8;
 int amareloCarro = 9;
 int vermelhoCarro = 10;
 int vermelhoPedestre = 13;
-int amareloPedestre = 12;
 int verdePedestre = 11;
-int botao = 7; //Botão apenas na montagem, sem uso ainda
+int botao = 7;
 
 void setup() {
-   pinMode(verdeCarro, OUTPUT);
-   pinMode(amareloCarro, OUTPUT);
-   pinMode(vermelhoCarro, OUTPUT);
-   pinMode(vermelhoPedestre, OUTPUT);
-   pinMode(amareloPedestre, OUTPUT);
-   pinMode(verdePedestre, OUTPUT);
-   pinMode(botao, INPUT);
+  pinMode(verdeCarro, OUTPUT);
+  pinMode(amareloCarro, OUTPUT);
+  pinMode(vermelhoCarro, OUTPUT);
+  pinMode(vermelhoPedestre, OUTPUT);
+  pinMode(verdePedestre, OUTPUT);
+  pinMode(botao, INPUT_PULLUP); //botão com resistor de pull-up
 }
 
 void loop() {
-   //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
-   digitalWrite(verdeCarro, HIGH);
-   digitalWrite(vermelhoPedestre, HIGH);
-   delay(4000); //Carro verde por 4 segundos
+  //Semáforo de carro fica verde
+  digitalWrite(verdeCarro, HIGH);
+  digitalWrite(vermelhoPedestre, HIGH);
 
-   //Grupo 1: Amarelo (Carro); Grupo 2: Vermelho (Pedestre)
-   digitalWrite(verdeCarro, LOW);
-   digitalWrite(amareloCarro, HIGH);
-   delay(1000);
-   digitalWrite(amareloCarro, LOW);
+  //Verifica durante 10 segundos se o botão foi pressionado
+  for (int i = 0; i < 100; i++) {
+    if (digitalRead(botao) == LOW) {
+      break; //interrompe o verde imediatamente
+    }
+    delay(100);
+  }
 
-   //Grupo 1: Vermelho (Carro); Grupo 2: Verde (Pedestre)
-   digitalWrite(vermelhoCarro, HIGH);
-   digitalWrite(vermelhoPedestre, LOW);
-   digitalWrite(verdePedestre, HIGH);
-   delay(2000); // Pedestre verde por 2 segundos
+  digitalWrite(verdeCarro, LOW);
 
-   //Grupo 1: Vermelho (Carro); Grupo 2: Amarelo (Pedestre)
-   digitalWrite(verdePedestre, LOW);
-   digitalWrite(amareloPedestre, HIGH);
-   delay(1000);
-   digitalWrite(amareloPedestre, LOW);
+  //transição segura: amarelo do carro (para não interromper repentinamente o semáforo dos carros)
+  digitalWrite(amareloCarro, HIGH);
+  delay(3000);
+  digitalWrite(amareloCarro, LOW);
 
-   //vermelhos por um curto tempo de segurança
-   digitalWrite(vermelhoPedestre, HIGH);
-   delay(500);
+  //carro vermelho, pedestre verde
+  digitalWrite(vermelhoCarro, HIGH);
+  digitalWrite(vermelhoPedestre, LOW);
+  digitalWrite(verdePedestre, HIGH);
+  delay(5000);
 
-   //volta ao ciclo inicial
-   digitalWrite(vermelhoCarro, LOW);
+  //fim da travessia
+  digitalWrite(verdePedestre, LOW);
+  digitalWrite(vermelhoPedestre, HIGH);
+  delay(500);  //tempinho de segurança :)
+
+  digitalWrite(vermelhoCarro, LOW);
 }
 }
 #endif
@@ -210,58 +210,55 @@ int verdeCarro = 8;
 int amareloCarro = 9;
 int vermelhoCarro = 10;
 int vermelhoPedestre = 13;
-int amareloPedestre = 12;
 int verdePedestre = 11;
 int botao = 7;
-int buzzer = 6;
+int buzzer = 6; 
 
 void setup() {
-   pinMode(verdeCarro, OUTPUT);
-   pinMode(amareloCarro, OUTPUT);
-   pinMode(vermelhoCarro, OUTPUT);
-   pinMode(vermelhoPedestre, OUTPUT);
-   pinMode(amareloPedestre, OUTPUT);
-   pinMode(verdePedestre, OUTPUT);
-   pinMode(botao, INPUT_PULLUP);  //botão ligado entre pino 7 e GND :)
-   pinMode(buzzer, OUTPUT);
+  pinMode(verdeCarro, OUTPUT);
+  pinMode(amareloCarro, OUTPUT);
+  pinMode(vermelhoCarro, OUTPUT);
+  pinMode(vermelhoPedestre, OUTPUT);
+  pinMode(verdePedestre, OUTPUT);
+  pinMode(botao, INPUT_PULLUP); //botão com resistor de pull-up
+  pinMode(buzzer, OUTPUT); //buzzer configurado como saída
 }
 
-if (digitalRead(botao) == LOW)  {//lógica invertida com INPUT_PULLUP
-     tone(buzzer, 1000); 
-     delay(100);
-     noTone(buzzer);
-}
-      
 void loop() {
-  //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
-   digitalWrite(verdeCarro, HIGH);
-   digitalWrite(vermelhoPedestre, HIGH);
-   delay(4000); // Carro verde por 4 segundos
+  digitalWrite(verdeCarro, HIGH);
+  digitalWrite(vermelhoPedestre, HIGH);
 
-   //Grupo 1: Amarelo (Carro); Grupo 2: Vermelho (Pedestre)
-   digitalWrite(verdeCarro, LOW);
-   digitalWrite(amareloCarro, HIGH);
-   delay(1000);
-   digitalWrite(amareloCarro, LOW);
+  //Verifica durante 10 segundos se o botão foi pressionado
+  for (int i = 0; i < 100; i++) {
+    if (digitalRead(botao) == LOW) {
+      //botão pressionado, buzzer por 100ms
+      tone(buzzer, 1000); 
+      delay(100); 
+      noTone(buzzer);
+      break;  //interrompe o verde imediatamente
+    }
+    delay(100);
+  }
 
-   //Grupo 1: Vermelho (Carro); Grupo 2: Verde (Pedestre)
-   digitalWrite(vermelhoCarro, HIGH);
-   digitalWrite(vermelhoPedestre, LOW);
-   digitalWrite(verdePedestre, HIGH);
-   delay(2000); // Pedestre verde por 2 segundos
+  digitalWrite(verdeCarro, LOW);
 
-   //Grupo 1: Vermelho (Carro); Grupo 2: Amarelo (Pedestre)
-   digitalWrite(verdePedestre, LOW);
-   digitalWrite(amareloPedestre, HIGH);
-   delay(1000);
-   digitalWrite(amareloPedestre, LOW);
+  //transição segura: amarelo do carro (para não interromper abruptamente o semáforo dos carros)
+  digitalWrite(amareloCarro, HIGH);
+  delay(3000);  // 3 segundos de amarelo
+  digitalWrite(amareloCarro, LOW);
 
-   //vermelhos por um curto tempo de segurança
-   digitalWrite(vermelhoPedestre, HIGH);
-   delay(500);
+  // crro vermelho, pedestre verde
+  digitalWrite(vermelhoCarro, HIGH);
+  digitalWrite(vermelhoPedestre, LOW);
+  digitalWrite(verdePedestre, HIGH);
+  delay(5000); 
 
-   //volta ao ciclo inicial
-   digitalWrite(vermelhoCarro, LOW);
+  //fim da travessia
+  digitalWrite(verdePedestre, LOW);
+  digitalWrite(vermelhoPedestre, HIGH);
+  delay(500);  //tempinho de segurança :)
+
+  digitalWrite(vermelhoCarro, LOW);
 }
 }
 #endif
@@ -273,73 +270,60 @@ int verdeCarro = 8;
 int amareloCarro = 9;
 int vermelhoCarro = 10;
 int vermelhoPedestre = 13;
-int amareloPedestre = 12;
 int verdePedestre = 11;
 int botao = 7;
 int buzzer = 6; 
 
 //Função para acionar o buzzer
-void acionaBuzzer() {
-   tone(buzzer, 1000);
-   delay(100);
-   noTone(buzzer);
-}
-
-//Função para verificar se o botão foi pressionado
-void verificaBotao() {
-   if (digitalRead(botao) == LOW) {
-      acionaBuzzer();
-   }
+void acionarBuzzer() {
+  tone(buzzer, 1000); 
+  delay(100);       
+  noTone(buzzer);    
 }
 
 void setup() {
-   pinMode(verdeCarro, OUTPUT);
-   pinMode(amareloCarro, OUTPUT);
-   pinMode(vermelhoCarro, OUTPUT);
-   pinMode(vermelhoPedestre, OUTPUT);
-   pinMode(amareloPedestre, OUTPUT);
-   pinMode(verdePedestre, OUTPUT);
-   pinMode(botao, INPUT_PULLUP); //botão como INPUT_PULLUP
-   pinMode(buzzer, OUTPUT);      //define o buzzer como saída
+  pinMode(verdeCarro, OUTPUT);
+  pinMode(amareloCarro, OUTPUT);
+  pinMode(vermelhoCarro, OUTPUT);
+  pinMode(vermelhoPedestre, OUTPUT);
+  pinMode(verdePedestre, OUTPUT);
+  pinMode(botao, INPUT_PULLUP); 
+  pinMode(buzzer, OUTPUT); 
 }
 
 void loop() {
-   verificaBotao(); 
+  //Semáforo de carro fica verde
+  digitalWrite(verdeCarro, HIGH);
+  digitalWrite(vermelhoPedestre, HIGH);
 
-   //Grupo 1: Verde (Carro); Grupo 2: Vermelho (Pedestre)
-   digitalWrite(verdeCarro, HIGH);
-   digitalWrite(vermelhoPedestre, HIGH);
-   for (int i = 0; i < 40; i++) { //4000ms dividido em 100ms
-      verificaBotao();
-      delay(100);
-   }
+  //Verifica durante 10 segundos se o botão foi pressionado
+  for (int i = 0; i < 100; i++) {
+    if (digitalRead(botao) == LOW) {
+      //botão pressionado, buzzer por 100ms
+      acionarBuzzer(); 
+      break;  //interrompe o verde imediatamente
+    }
+    delay(100);
+  }
 
-   digitalWrite(verdeCarro, LOW);
-   digitalWrite(amareloCarro, HIGH);
-   for (int i = 0; i < 10; i++) {
-      verificaBotao();
-      delay(100);
-   }
-   digitalWrite(amareloCarro, LOW);
+  digitalWrite(verdeCarro, LOW);
 
-   digitalWrite(vermelhoCarro, HIGH);
-   digitalWrite(vermelhoPedestre, LOW);
-   digitalWrite(verdePedestre, HIGH);
-   for (int i = 0; i < 20; i++) {
-      verificaBotao();
-      delay(100);
-   }
+  //transição segura: amarelo do carro (para não interromper abruptamente o semáforo dos carros)
+  digitalWrite(amareloCarro, HIGH);
+  delay(3000);  
+  digitalWrite(amareloCarro, LOW);
 
-   digitalWrite(verdePedestre, LOW);
-   digitalWrite(amareloPedestre, HIGH);
-   for (int i = 0; i < 10; i++) {
-      verificaBotao();
-      delay(100);
-   }
-   digitalWrite(amareloPedestre, LOW);
+  //carro vermelho, pedestre verde
+  digitalWrite(vermelhoCarro, HIGH);
+  digitalWrite(vermelhoPedestre, LOW);
+  digitalWrite(verdePedestre, HIGH);
+  delay(5000); 
 
-   digitalWrite(vermelhoPedestre, HIGH);
-   delay(500); //tempinho de segurança
-   digitalWrite(vermelhoCarro, LOW);
+  //fim da travessia
+  digitalWrite(verdePedestre, LOW);
+  digitalWrite(vermelhoPedestre, HIGH);
+  delay(500);  //tempinho de segurança :)
+
+  digitalWrite(vermelhoCarro, LOW);
 }
 }
