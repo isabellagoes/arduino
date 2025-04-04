@@ -1,5 +1,9 @@
-// Exercicio 1 - Faça os leds de cores iguais piscarem na sequência verde, amarelo e vermelho com tempo de 1 seg. acesso e 1 seg. apagado.
+#define ex
+#include "stdio.h"
 
+// Exercicio 1 - Faça os leds de cores iguais piscarem na sequência verde, amarelo e vermelho com tempo de 1 seg. acesso e 1 seg. apagado.
+#ifdef ex1
+main(){
 int pino8 = 8; //verde 1
 int pino9 = 9; //amarelo 1
 int pino10 = 10; //vermelho 1
@@ -39,10 +43,12 @@ void loop()
    digitalWrite(pino10,LOW); 
    digitalWrite(pino11,LOW); 
 }
+}
 
-/*
+
 // Exercicio 2 - Faça funcionar os 2 grupos de leds como um semáforo como num cruzamento com tempos iguais.
-
+#ifdef ex2
+main(){
 int pino8 = 8;   // verde 1
 int pino9 = 9;   // amarelo 1
 int pino10 = 10; // vermelho 1
@@ -83,11 +89,12 @@ void loop()
 
    digitalWrite(pino10, LOW);
 }
-*/
+}
 
-/*
+
 // Exercicio 3 - Modifique os tempos para que um dos semáforos do cruzamento fique mais tempo com verde aceso do que o outro. Verde 4 seg. e 2 segs.
-
+#ifdef ex3
+main(){
 int pino8 = 8; //verde 1
 int pino9 = 9; //amarelo 1
 int pino10 = 10; //vermelho 1
@@ -128,9 +135,11 @@ void loop()
    digitalWrite(pino12, LOW);
    digitalWrite(pino10, LOW);
 }
-*/
+}
 
 //Exercício 4 – Acrescente um botão a montagem. Faça funcionar os semáforos para travessia de pedestres. Um será para o carro e o outro para os pedestres.
+#ifdef ex4
+main(){
 int pino8 = 8; //verde carro 1
 int pino9 = 9; //amarelo carro 1
 int pino10 = 10; //vermelho carro 1
@@ -178,8 +187,11 @@ void loop() {
    digitalWrite(pino9, LOW);
    digitalWrite(pino10, HIGH);
 }
+}
 
 //Exercício 5 – Acrescente um buzzer a montagem e quando o botão for acionado no semáforo de pedestre o buzzer deve apitar por 100ms.
+#ifdef ex5
+main(){
 int buzzer = 4;
 
 void setup() {
@@ -226,8 +238,11 @@ void loop() {
    digitalWrite(pino9, LOW);
    digitalWrite(pino10, HIGH);
 }
+}
 
 //Exercício 6 – Transforme o acionamento do buzzer numa função.
+#ifdef ex6
+main(){
 void tocarBuzzer(int tempo) {
    digitalWrite(buzzer, HIGH);
    delay(tempo);
@@ -261,4 +276,5 @@ void loop() {
    delay(1000);
    digitalWrite(pino9, LOW);
    digitalWrite(pino10, HIGH);
+}
 }
