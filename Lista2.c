@@ -73,8 +73,6 @@ void loop() {
     
     delay(500);
 }
-main(){
-
 
 /* Exercício 2 – Modifique o programa para o buzzer apitar quando o LED 1 acender. */
 #ifdef ex2
@@ -110,14 +108,14 @@ void loop() {
     
     if (estadoBotao2 == LOW) {
         digitalWrite(led2, HIGH);
+        tone(buzzer, 1000);
     } else {
         digitalWrite(led2, LOW);
+        noTone(buzzer);
     }
     
     delay(500);
 }
-
-
 }
 #endif
 
@@ -129,16 +127,14 @@ int led1 = 13;
 int buzzer = 7;
 int botao2 = 6;
 int led2 = 12;
-int EstadoBotao1 = 0;
-int EstadoBotao2 = 0;
 
 void setup() {
-    pinMode(led1, OUTPUT);
-    pinMode(botao1, INPUT);
+    pinMode(led2, OUTPUT);
+    pinMode(botao2, INPUT);
     pinMode(buzzer, OUTPUT);
     
-    pinMode(botao2, INPUT);
-    pinMode(led2, OUTPUT);
+    pinMode(botao1, INPUT);
+    pinMode(led1, OUTPUT);
     
     Serial.begin(9600);
 }
@@ -147,50 +143,24 @@ void loop() {
     int estadoBotao1 = digitalRead(botao1);
     int estadoBotao2 = digitalRead(botao2);
     
-    if (estadoBotao1 == HIGH) {
-        digitalWrite(led1, LOW);
-        noTone(buzzer);
-    } else {
-        digitalWrite(led1, HIGH);
-        tone(buzzer, 1000);  // Buzzer apita quando LED 1 acende
-    }
-    
-    if (estadoBotao2 == LOW) {
-        digitalWrite(led2, HIGH);
-        tone(buzzer, 1000);  // Buzzer apita quando LED 2 acende
-    } else {
+    if (estadoBotao2 == HIGH) {
         digitalWrite(led2, LOW);
         noTone(buzzer);
+    } else {
+        digitalWrite(led2, HIGH);
+        tone(buzzer, 1000); 
     }
-
-    int lerBotao1() 
-{
-  	return digitalRead(botao1); 
-}
-
-int lerBotao2() 
-{
-  	return digitalRead(botao2);  
-}
-
-void loop()
-{
-	EstadoBotao1 = lerBotao1();
-  	EstadoBotao2 = lerBotao2();
-	
-    Serial.print("Estado Botao 1: ");
- 	Serial.println(EstadoBotao1);
     
-  	Serial.print("Estado Botao 2: ");
-  	Serial.println(EstadoBotao2);
-  
-  	delay(5000);
-}
+    if (estadoBotao1 == LOW) {
+        digitalWrite(led1, HIGH);
+        tone(buzzer, 1000);
+    } else {
+        digitalWrite(led1, LOW);
+        noTone(buzzer);
+    }
     
     delay(500);
 }
-}
-
 }
 #endif
 
@@ -207,7 +177,6 @@ void setup() {
     pinMode(led1, OUTPUT);
     pinMode(botao1, INPUT);
     pinMode(buzzer, OUTPUT);
-    
     pinMode(botao2, INPUT);
     pinMode(led2, OUTPUT);
     
@@ -217,23 +186,26 @@ void setup() {
 void loop() {
     int estadoBotao1 = digitalRead(botao1);
     int estadoBotao2 = digitalRead(botao2);
-    
+
     if (estadoBotao2 == LOW) {
         digitalWrite(led1, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led1, LOW);
-        noTone(buzzer);
     }
-    
+
     if (estadoBotao1 == LOW) {
         digitalWrite(led2, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led2, LOW);
+    }
+
+    //buzzer só toca se pelo menos um dos LEDs estiver aceso :)
+    if (digitalRead(led1) == HIGH || digitalRead(led2) == HIGH) {
+        tone(buzzer, 1000);
+    } else {
         noTone(buzzer);
     }
-    
+
     delay(500);
 }
 }
@@ -241,7 +213,6 @@ void loop() {
 
 /* Exercício 5 – Escreva 2 funções que façam a leitura do estado de cada um dos botões. REFAZER */ 
 #ifdef ex5
-
 main(){
 int botao1 = 2;
 int led1 = 13;
@@ -249,64 +220,51 @@ int buzzer = 7;
 int botao2 = 6;
 int led2 = 12;
 
+int estadoBotao1;
+int estadoBotao2;
+
 void setup() {
     pinMode(led1, OUTPUT);
     pinMode(botao1, INPUT);
     pinMode(buzzer, OUTPUT);
-    
     pinMode(botao2, INPUT);
     pinMode(led2, OUTPUT);
     
     Serial.begin(9600);
 }
 
+void lerBotoes() {
+    estadoBotao1 = digitalRead(botao1);
+    estadoBotao2 = digitalRead(botao2);
+}
+
 void loop() {
-    int estadoBotao1 = digitalRead(botao1);
-    int estadoBotao2 = digitalRead(botao2);
-    
+    lerBotoes();
+
     if (estadoBotao2 == LOW) {
         digitalWrite(led1, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led1, LOW);
-        noTone(buzzer);
     }
-    
+
     if (estadoBotao1 == LOW) {
         digitalWrite(led2, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led2, LOW);
+    }
+
+    if (digitalRead(led1) == HIGH || digitalRead(led2) == HIGH) {
+        tone(buzzer, 1000);
+    } else {
         noTone(buzzer);
     }
-}
 
-    int lerBotao1() 
-{
-  	return digitalRead(botao1); 
-}
-
-int lerBotao2() 
-{
-  	return digitalRead(botao2);  
-}
-
-void loop()
-{
-	EstadoBotao1 = lerBotao1();
-  	EstadoBotao2 = lerBotao2();
-	
-    Serial.print("Estado Botao 1: ");
- 	Serial.println(EstadoBotao1);
-    
-  	Serial.print("Estado Botao 2: ");
-  	Serial.println(EstadoBotao2);
+    delay(500);
 }
 #endif
 
 /* Exercício 6 – Escreva 2 funções que tomem a decisão se acende ou apaga cada um dos LEDs. */
 #ifdef ex6
-// Função para tomar a decisão de acender ou apagar LED1
 main(){
 int botao1 = 2;
 int led1 = 13;
@@ -314,43 +272,51 @@ int buzzer = 7;
 int botao2 = 6;
 int led2 = 12;
 
+int estadoBotao1;
+int estadoBotao2;
+
 void setup() {
     pinMode(led1, OUTPUT);
     pinMode(botao1, INPUT);
     pinMode(buzzer, OUTPUT);
-    
     pinMode(botao2, INPUT);
     pinMode(led2, OUTPUT);
     
     Serial.begin(9600);
 }
 
-void loop() {
-    int estadoBotao1 = digitalRead(botao1);
-    int estadoBotao2 = digitalRead(botao2);
-    
+void lerBotoes() {
+    estadoBotao1 = digitalRead(botao1);
+    estadoBotao2 = digitalRead(botao2);
+}
+
+void controlarLed1() {
     if (estadoBotao2 == LOW) {
         digitalWrite(led1, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led1, LOW);
-        noTone(buzzer);
     }
-    
+}
+
+void controlarLed2() {
     if (estadoBotao1 == LOW) {
         digitalWrite(led2, HIGH);
-        tone(buzzer, 1000);
     } else {
         digitalWrite(led2, LOW);
-        noTone(buzzer);
     }
-    
-    delay(500);
 }
 
 void loop() {
-    decisaoLed1();
-    decisaoLed2();
+    lerBotoes();
+    controlarLed1();
+    controlarLed2();
+
+    if (digitalRead(led1) == HIGH || digitalRead(led2) == HIGH) {
+        tone(buzzer, 1000);
+    } else {
+        noTone(buzzer);
+    }
+
     delay(500);
 }
 }
@@ -359,35 +325,66 @@ void loop() {
 /* Exercício 7 – Escreva 1 função que tome a decisão de apitar ou não o buzzer. */
 #ifdef ex7
 main(){
-int buzzer = 7;
 int botao1 = 2;
-int estadoBotao1 = 0;
+int led1 = 13;
+int buzzer = 7;
+int botao2 = 6;
+int led2 = 12;
+
+int estadoBotao1;
+int estadoBotao2;
 
 void setup() {
+    pinMode(led1, OUTPUT);
     pinMode(botao1, INPUT);
     pinMode(buzzer, OUTPUT);
+    pinMode(botao2, INPUT);
+    pinMode(led2, OUTPUT);
+    
     Serial.begin(9600);
 }
+
+void lerBotoes() {
+    estadoBotao1 = digitalRead(botao1);
+    estadoBotao2 = digitalRead(botao2);
 }
 
-// Função para decidir se o buzzer deve apitar
-void decisaoBuzzer() {
-    estadoBotao1 = digitalRead(botao1);
+void controlarLed1() {
+    if (estadoBotao2 == LOW) {
+        digitalWrite(led1, HIGH);
+    } else {
+        digitalWrite(led1, LOW);
+    }
+}
+
+void controlarLed2() {
     if (estadoBotao1 == LOW) {
-        tone(buzzer, 2000);
+        digitalWrite(led2, HIGH);
+    } else {
+        digitalWrite(led2, LOW);
+    }
+}
+
+void controlarBuzzer() {
+    if (digitalRead(led1) == HIGH || digitalRead(led2) == HIGH) {
+        tone(buzzer, 1000);
     } else {
         noTone(buzzer);
     }
 }
 
 void loop() {
-    decisaoBuzzer();
+    lerBotoes();
+    controlarLed1();
+    controlarLed2();
+    controlarBuzzer();
+
     delay(500);
+}
 }
 #endif
 
 /* Exercício 8 – Copie o programa abaixo: Execute a música. Depois tire a função delay(5000) e coloque o botão 1 para iniciar a música. */
-
 #ifdef ex8
 main(){
 #define DO 264
@@ -399,35 +396,84 @@ main(){
 #define SI 495
 #define D 500
 #define N 29
+
+int botao1 = 2;
+int led1 = 13;
+int buzzer = 7;
+int botao2 = 6;
+int led2 = 12;
+
+int estadoBotao1;
+int estadoBotao2;
+
 int notas[][2] = { {SOL, D/2}, {SOL, D/2}, {LA, D*2}, {SOL, D}, {DO*2, D},
                    {SI, D*3}, {SOL, D/2}, {SOL, D/2}, {LA, D*2}, {SOL, D}, {RE*2, D}, {DO*2, D},
                    {DO*2, D}, {0, D}, {MI*2, D/2}, {MI*2, D/2}, {SOL*2, D*2}, {MI*2, D},
                    {DO*2, D}, {SI, D}, {LA, D}, {0, D}, {FA*2, D/2}, {FA*2, D/2}, {MI*2, D*2}, {DO*2, D},
                    {RE*2, D}, {DO*2, D}, {DO*2, D*3} };
-int duracao;
-int nota;
-int buzzerPin = 7;
-int botao1 = 2;
-int estadoBotao1 = 0;
 
 void setup() {
-    pinMode(buzzerPin, OUTPUT);
+    pinMode(led1, OUTPUT);
     pinMode(botao1, INPUT);
+    pinMode(buzzer, OUTPUT);
+    pinMode(botao2, INPUT);
+    pinMode(led2, OUTPUT);
+    
     Serial.begin(9600);
 }
 
-void loop() {
+void lerBotoes() {
     estadoBotao1 = digitalRead(botao1);
-    if (estadoBotao1 == LOW) {
-        for (int i = 0; i < N; i++) {
-            nota = notas[i][0];
-            duracao = notas[i][1];
-            tone(buzzerPin, nota, duracao);
-            delay(duracao);
-        }
+    estadoBotao2 = digitalRead(botao2);
+}
+
+void controlarLed1() {
+    if (estadoBotao2 == LOW) {
+        digitalWrite(led1, HIGH);
     } else {
-        noTone(buzzerPin);
+        digitalWrite(led1, LOW);
     }
+}
+
+void controlarLed2() {
+    if (estadoBotao1 == LOW) {
+        digitalWrite(led2, HIGH);
+    } else {
+        digitalWrite(led2, LOW);
+    }
+}
+
+void controlarBuzzer() {
+    if (digitalRead(led1) == HIGH || digitalRead(led2) == HIGH) {
+        tone(buzzer, 1000);
+    } else {
+        noTone(buzzer);
+    }
+}
+
+void tocarMusica() {
+    for (int i = 0; i < N; i++) {
+        if (notas[i][0] == 0) {
+            noTone(buzzer);
+        } else {
+            tone(buzzer, notas[i][0], notas[i][1]);
+        }
+        delay(notas[i][1] * 1.3);
+    }
+    noTone(buzzer);
+}
+
+void loop() {
+    lerBotoes();
+    controlarLed1();
+    controlarLed2();
+    controlarBuzzer();
+    
+    if (estadoBotao1 == LOW) {
+        tocarMusica();
+    }
+    
+    delay(500);
 }
 }
 #endif
